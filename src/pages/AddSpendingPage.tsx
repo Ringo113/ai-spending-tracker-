@@ -1,13 +1,14 @@
+
 import { useState } from "react";
-import { TextField, Button } from "@mui/material"; // Box removed
-import styles from "./AddSpendingPage.module.css"; // Import the CSS module
+import { TextField, Button } from "@mui/material";
+import styles from "./AddSpendingPage.module.css";
 
 const AddSpendingPage = () => {
   const [date, setDate] = useState("");
   const [merchantName, setMerchantName] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState("");
-  const [additionalInfo, setAdditionalInfo] = useState("");
+  const [note, setNote] = useState("");
 
   const handleSubmit = () => {
     console.log({
@@ -15,9 +16,8 @@ const AddSpendingPage = () => {
       merchantName,
       category,
       amount,
-      additionalInfo,
+      note,
     });
-    // TODO: upload this data to a backend or state management store
   };
 
   return (
@@ -26,7 +26,7 @@ const AddSpendingPage = () => {
       <div className={styles.FormContainer}>
         <TextField
           label="Date"
-          fullWidth // Makes TextField take the full width of its container
+          fullWidth
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
@@ -52,17 +52,17 @@ const AddSpendingPage = () => {
           onChange={(e) => setAmount(e.target.value)}
         />
         <TextField
-          label="Additional Info (Optional)"
+          label="Note"
           fullWidth
           multiline
-          rows={3}
-          value={additionalInfo}
-          onChange={(e) => setAdditionalInfo(e.target.value)}
+          rows={2}
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
         />
         <Button
           variant="contained"
           onClick={handleSubmit}
-          className={styles.submitButton} // Using class from CSS module
+          className={styles.submitButton}
         >
           Submit
         </Button>
@@ -70,4 +70,5 @@ const AddSpendingPage = () => {
     </>
   );
 };
+
 export default AddSpendingPage;
